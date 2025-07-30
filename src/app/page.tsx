@@ -2,7 +2,6 @@
 import { ModelSelector } from "@/components/model-selector";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/ui/sidebar";
-import { Menu } from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
