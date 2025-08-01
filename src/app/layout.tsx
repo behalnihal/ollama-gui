@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Menu } from "@/components/menu";
+import { Navbar } from "@/components/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,8 +39,7 @@ export default function RootLayout({
         >
           <SidebarProvider>
             <Menu />
-
-            <main>{children}</main>
+            <main className="container mx-auto">{children}</main>
           </SidebarProvider>
         </ThemeProvider>
       </body>
