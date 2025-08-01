@@ -23,7 +23,7 @@ export function MessageInput() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="text-muted-foreground hover:text-foreground h-8 w-8"
+                  className="text-muted-foreground hover:text-foreground h-8 w-8 cursor-pointer"
                   aria-label="Attach file"
                   type="button"
                 >
@@ -45,7 +45,7 @@ export function MessageInput() {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="text-muted-foreground hover:text-foreground h-8 w-8"
+                  className="text-muted-foreground hover:text-foreground h-8 w-8 cursor-pointer"
                   aria-label="Attach web link"
                   type="button"
                 >
@@ -70,7 +70,7 @@ export function MessageInput() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="text-primary hover:text-primary/80 h-8 w-8"
+                className="text-primary hover:text-primary/80 h-8 w-8 cursor-pointer"
                 aria-label="Send message"
                 type="button"
               >

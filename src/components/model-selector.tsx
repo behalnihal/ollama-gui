@@ -17,7 +17,7 @@ export function ModelSelector() {
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost">
+          <Button variant="ghost" className="cursor-pointer">
             {selectedModel === "" ? "Models" : selectedModel}
             <ChevronDownIcon />
           </Button>

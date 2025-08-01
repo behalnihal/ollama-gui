@@ -1,6 +1,6 @@
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { CodeBlock } from "./code-block";
+import { CodeBlock } from "./chat/code-block";
 import Link from "next/link";
 import { memo } from "react";
 
