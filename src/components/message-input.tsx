@@ -42,30 +42,6 @@ export function MessageInput() {
                     <path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48" />
                   </svg>
                 </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="text-muted-foreground hover:text-foreground h-8 w-8 cursor-pointer"
-                  aria-label="Attach web link"
-                  type="button"
-                >
-                  <svg
-                    className="w-3.5 h-3.5 text-primary"
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
-                    strokeWidth={2}
-                    stroke="currentColor"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    height={14}
-                    width={14}
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <circle r={10} cy={12} cx={12} />
-                    <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-                    <path d="M2 12h20" />
-                  </svg>
-                </Button>
               </div>
               <Button
                 variant="ghost"
