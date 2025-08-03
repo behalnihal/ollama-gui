@@ -12,14 +12,17 @@ import {
 } from "./ui/sidebar";
 import Image from "next/image";
 import { PenSquare } from "lucide-react";
+import { ChatList } from "./chat/chat-list";
+import { useRouter } from "next/navigation";
 
 export function Menu() {
   const { toggleSidebar } = useSidebar();
+  const router = useRouter();
 
   const handleNewChat = () => {
-    // TODO: Implement new chat
-    console.log("new chat");
+    router.push("/");
   };
+
   return (
     <>
       <Sidebar collapsible="icon">
@@ -64,9 +67,7 @@ export function Menu() {
               <span>Chats</span>
             </SidebarGroupLabel>
             <SidebarGroupContent>
-              <SidebarMenu>
-                {/* TODO: Fetch chats from local storage */}
-              </SidebarMenu>
+              <ChatList />
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>

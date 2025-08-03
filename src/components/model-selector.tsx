@@ -6,33 +6,82 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "./ui/dropdown-menu";
-import { ChevronDownIcon } from "lucide-react";
-import { useState } from "react";
+import { ChevronDownIcon, RefreshCw } from "lucide-react";
+import { useState, useEffect } from "react";
+import { getModels } from "@/api/api";
 
-export function ModelSelector() {
+interface ModelSelectorProps {
+  selectedModel?: string;
+  onModelChange?: (model: string) => void;
+}
+
+export function ModelSelector({
+  selectedModel,
+  onModelChange,
+}: ModelSelectorProps) {
   const [models, setModels] = useState<string[]>([]);
-  const [selectedModel, setSelectedModel] = useState<string>("");
-  // TODO: Fetch models from Ollama
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchModels = async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await getModels();
+      const modelNames = response.models?.map((model) => model.name) || [];
+      setModels(modelNames);
+      if (modelNames.length > 0 && !selectedModel) {
+        onModelChange?.(modelNames[0]);
+      }
+    } catch (err) {
+      setError("Failed to fetch models");
+      console.error("Error fetching models:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchModels();
+  }, []);
+
+  const handleModelSelect = (model: string) => {
+    onModelChange?.(model);
+  };
+
   return (
-    <div>
+    <div className="flex items-center gap-2">
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="cursor-pointer">
-            {selectedModel === "" ? "Models" : selectedModel}
+            {selectedModel || "Models"}
             <ChevronDownIcon />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="top" align="start">
+          {models.length === 0 && !isLoading && (
+            <DropdownMenuItem disabled>No models found</DropdownMenuItem>
+          )}
           {models.map((model) => (
             <DropdownMenuItem
               key={model}
-              onClick={() => setSelectedModel(model)}
+              onClick={() => handleModelSelect(model)}
             >
               {model}
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
+      <Button
+        variant="ghost"
+        size="icon"
+        onClick={fetchModels}
+        disabled={isLoading}
+        className="h-8 w-8 cursor-pointer"
+        title="Reload models"
+      >
+        <RefreshCw className={`h-4 w-4 ${isLoading ? "animate-spin" : ""}`} />
+      </Button>
     </div>
   );
 }

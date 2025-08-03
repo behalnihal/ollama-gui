@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import { ChatProvider } from "@/components/chat/chat-context";
 import { Menu } from "@/components/menu";
 import { Navbar } from "@/components/navbar";
 
@@ -38,8 +39,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SidebarProvider>
-            <Menu />
-            <main className="container mx-auto">{children}</main>
+            <ChatProvider>
+              <Menu />
+              <main className="container mx-auto">{children}</main>
+            </ChatProvider>
           </SidebarProvider>
         </ThemeProvider>
       </body>
