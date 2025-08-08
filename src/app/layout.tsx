@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ChatProvider } from "@/components/chat/chat-context";
 import { Menu } from "@/components/menu";
-// Navbar is imported within pages where it is actually used.
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,6 +48,7 @@ export default function RootLayout({
             </ChatProvider>
           </SidebarProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
