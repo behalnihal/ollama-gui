@@ -1,10 +1,7 @@
 import {
-  Model,
   ListModelsResponse,
-  OllamaModel,
   OllamaMessage,
   OllamaToolCall,
-  OllamaTool,
   GenerateRequest,
   GenerateResponse,
   ChatRequest,
@@ -19,7 +16,6 @@ import {
   PushRequest,
   EmbedRequest,
   EmbedResponse,
-  RunningModel,
   ListRunningModelsResponse,
   VersionResponse,
   PullResponse,
@@ -252,7 +248,4 @@ export function createToolResultMessage(
   };
 }
 
-// Legacy function for backward compatibility
-const getBaseUrl = (path: string) => {
-  return `${API_BASE_URL}${path}`;
-};
+// Legacy function removed (unused)

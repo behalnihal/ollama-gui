@@ -1,12 +1,13 @@
 interface CodeBlockProps {
-  node: any;
-  inline: boolean;
-  className: string;
-  children: any;
+  // react-markdown passes a complex AST node; we do not use it directly here
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  node?: any;
+  inline?: boolean;
+  className?: string;
+  children: React.ReactNode;
 }
 
 export function CodeBlock({
-  node,
   inline,
   className,
   children,

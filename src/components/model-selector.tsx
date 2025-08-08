@@ -21,7 +21,7 @@ export function ModelSelector({
 }: ModelSelectorProps) {
   const [models, setModels] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
 
   const fetchModels = async () => {
     setIsLoading(true);
@@ -43,6 +43,8 @@ export function ModelSelector({
 
   useEffect(() => {
     fetchModels();
+    // fetchModels is stable; we intentionally call once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleModelSelect = (model: string) => {

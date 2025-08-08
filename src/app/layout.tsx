@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ChatProvider } from "@/components/chat/chat-context";
 import { Menu } from "@/components/menu";
-import { Navbar } from "@/components/navbar";
+// Navbar is imported within pages where it is actually used.
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

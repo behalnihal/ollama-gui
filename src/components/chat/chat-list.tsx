@@ -16,7 +16,7 @@ export function ChatList() {
   const { setRefreshChats } = useChatContext();
   const { state } = useSidebar();
   const [chats, setChats] = useState<Chat[]>([]);
-  const [bump, setBump] = useState(0);
+  const [, setBump] = useState(0);
 
   useEffect(() => {
     const subscription = liveQuery(() =>

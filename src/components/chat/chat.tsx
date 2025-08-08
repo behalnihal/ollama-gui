@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageInput } from "@/components/message-input";
 import { Button } from "@/components/ui/button";
-import { Bot, User, Loader2, RefreshCw } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import {
   generateChatCompletionStream,
   createChatMessage,
@@ -12,7 +12,7 @@ import {
 import { OllamaMessage } from "@/types";
 import { db } from "@/db/db";
 import { useRouter } from "next/navigation";
-import { ModelSelector } from "@/components/model-selector";
+// ModelSelector is used via MessageInput
 import { useChatContext } from "./chat-context";
 import { Markdown } from "@/components/markdown";
 
@@ -83,7 +83,7 @@ export function Chat({ chatId }: ChatProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingChat, setIsLoadingChat] = useState(false);
   const [selectedModel, setSelectedModel] = useState<string>("");
-  const [availableModels, setAvailableModels] = useState<string[]>([]);
+  const [availableModels, setAvailableModels] = useState<string[]>([]); // kept for potential future UI usage
   const [selectedPrompt, setSelectedPrompt] = useState("");
   const [currentChatId, setCurrentChatId] = useState<number | null>(null);
   const [copiedMessageIndex, setCopiedMessageIndex] = useState<number | null>(
@@ -166,6 +166,7 @@ export function Chat({ chatId }: ChatProps) {
       setIsLoadingChat(true);
       loadChat(parseInt(chatId));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatId, isCreatingNewChat, isLoading]);
 
   const loadChat = async (id: number) => {
@@ -308,7 +309,8 @@ export function Chat({ chatId }: ChatProps) {
         stream: true,
       });
 
-      let assistantMessage = createChatMessage("assistant", "");
+      // `assistantMessage` is mutated as chunks stream in; prefer const
+      const assistantMessage = createChatMessage("assistant", "");
       let hasContent = false;
 
       for await (const chunk of stream) {

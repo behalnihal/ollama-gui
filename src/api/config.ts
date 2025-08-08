@@ -100,7 +100,7 @@ export async function* streamRequest<T>(
           try {
             const data = JSON.parse(line);
             yield data as T;
-          } catch (e) {
+          } catch {
             console.warn("Failed to parse JSON from stream:", line);
           }
         }

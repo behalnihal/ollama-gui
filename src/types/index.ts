@@ -19,7 +19,7 @@ export interface Message {
   chatId: number;
   role: ChatRole;
   content: string;
-  meta?: any;
+  meta?: Record<string, unknown>;
   context?: number[];
   createdAt: Date;
 }
@@ -59,7 +59,7 @@ export interface OllamaMessage {
 export interface OllamaToolCall {
   function: {
     name: string;
-    arguments: Record<string, any>;
+    arguments: Record<string, unknown>;
   };
 }
 
@@ -70,7 +70,7 @@ export interface OllamaTool {
     description: string;
     parameters: {
       type: string;
-      properties: Record<string, any>;
+      properties: Record<string, unknown>;
       required: string[];
     };
   };
@@ -83,8 +83,8 @@ export interface GenerateRequest {
   suffix?: string;
   images?: string[];
   think?: boolean;
-  format?: "json" | Record<string, any>;
-  options?: Record<string, any>;
+  format?: "json" | Record<string, unknown>;
+  options?: Record<string, unknown>;
   system?: string;
   template?: string;
   stream?: boolean;
@@ -98,8 +98,8 @@ export interface ChatRequest {
   messages: OllamaMessage[];
   tools?: OllamaTool[];
   think?: boolean;
-  format?: "json" | Record<string, any>;
-  options?: Record<string, any>;
+  format?: "json" | Record<string, unknown>;
+  options?: Record<string, unknown>;
   stream?: boolean;
   keep_alive?: string;
 }
@@ -112,7 +112,7 @@ export interface CreateRequest {
   template?: string;
   license?: string | string[];
   system?: string;
-  parameters?: Record<string, any>;
+  parameters?: Record<string, unknown>;
   messages?: OllamaMessage[];
   stream?: boolean;
   quantize?: string;
@@ -148,7 +148,7 @@ export interface EmbedRequest {
   model: string;
   input: string | string[];
   truncate?: boolean;
-  options?: Record<string, any>;
+  options?: Record<string, unknown>;
   keep_alive?: string;
 }
 
@@ -201,7 +201,7 @@ export interface ShowResponse {
     parameter_size: string;
     quantization_level: string;
   };
-  model_info: Record<string, any>;
+  model_info: Record<string, unknown>;
   capabilities: string[];
 }
 

@@ -2,7 +2,7 @@
 
 An elegant, local-first web UI for chatting with models served by Ollama. This app discovers available models from your running Ollama instance, lets you select one, and chat with streaming responses. Chats are stored locally in your browser using IndexedDB.
 
-![Local LLaMA](localLlama.png)
+![Local LLaMA](image.png)
 
 ### Features
 
