@@ -37,7 +37,7 @@ export function Navbar() {
       <div className="flex items-center gap-2">
         <Button variant="ghost" onClick={toggleSidebar} className="md:hidden">
           <Image
-            src="/logo.png"
+            src="/logo.svg"
             alt="sidebar-toggle"
             width={20}
             height={20}

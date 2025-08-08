@@ -40,7 +40,7 @@ export function Menu() {
                     <div>
                       <Image
                         className="dark:invert"
-                        src="/logo.png"
+                        src="/logo.svg"
                         alt="Ollama Logo"
                         width={20}
                         height={20}
