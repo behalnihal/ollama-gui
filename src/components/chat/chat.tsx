@@ -179,7 +179,7 @@ export function Chat({ chatId }: ChatProps) {
         const chatMessages = await db.messages
           .where("chatId")
           .equals(id)
-          .toArray();
+          .sortBy("createdAt");
 
         const ollamaMessages: OllamaMessage[] = chatMessages.map((msg) => ({
           role: msg.role as "user" | "assistant",
@@ -238,16 +238,33 @@ export function Chat({ chatId }: ChatProps) {
     }
   };
 
-  const saveMessage = async (role: "user" | "assistant", content: string) => {
-    if (!currentChatId) return;
+  const saveMessage = async (
+    role: "user" | "assistant",
+    content: string,
+    forcedChatId?: number | null
+  ) => {
+    const effectiveChatId = forcedChatId ?? currentChatId;
+    if (!effectiveChatId) return;
 
     try {
       await db.messages.add({
-        chatId: currentChatId,
+        chatId: effectiveChatId,
         role: role,
         content: content,
         createdAt: new Date(),
       });
+
+      // Update chat timestamp so recent chats reflect latest activity
+      await db.chats.update(effectiveChatId, { createdAt: new Date() });
+
+      // Notify chat list to refresh recents ordering
+      try {
+        if (typeof refreshChats === "function") {
+          refreshChats();
+        }
+      } catch (e) {
+        console.warn("Could not refresh chat list after save:", e);
+      }
     } catch (error) {
       console.error("Error saving message:", error);
     }
@@ -282,7 +299,7 @@ export function Chat({ chatId }: ChatProps) {
         isNewChat = true;
       } else {
         // Save user message to existing chat
-        await saveMessage("user", content);
+        await saveMessage("user", content, chatId);
       }
 
       const stream = generateChatCompletionStream({
@@ -331,12 +348,11 @@ export function Chat({ chatId }: ChatProps) {
       // Ensure we have a valid assistant message before saving
       if (assistantMessage.content.trim()) {
         // Save assistant message
-        await saveMessage("assistant", assistantMessage.content);
+        await saveMessage("assistant", assistantMessage.content, chatId);
 
-        // Update URL without navigation to prevent page reload
+        // Navigate using Next router so sidebar pathname and UI update properly
         if (isNewChat && chatId) {
-          const newUrl = `/chat/${chatId}`;
-          window.history.pushState({}, "", newUrl);
+          router.push(`/chat/${chatId}`);
         }
       } else {
         // If no content was received, add an error message
