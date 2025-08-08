@@ -19,7 +19,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Local LLaMA",
-  description: "Local LLaMA",
+  description: "use local models with a simple UI",
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
