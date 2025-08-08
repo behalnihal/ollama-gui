@@ -53,6 +53,7 @@ npm run dev
 3. Ensure Ollama is running locally
 
 ```bash
+set OLLAMA_ORIGINS=https://localhost:3000
 ollama serve
 ```
 
@@ -74,6 +75,20 @@ npm start
 ```
 
 ---
+
+## Using the Hosted Version
+
+set ollama origins using
+
+```bash
+set OLLAMA_ORIGINS=https://lammalocal.vercel.app
+```
+
+then run,
+
+```bash
+ollama serve
+```
 
 ## Configuration
 
