@@ -81,7 +81,7 @@ npm start
 set ollama origins using
 
 ```bash
-set OLLAMA_ORIGINS=https://lammalocal.vercel.app
+set OLLAMA_ORIGINS=https://llamalocal.vercel.app
 ```
 
 then run,
