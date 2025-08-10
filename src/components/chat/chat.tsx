@@ -524,6 +524,20 @@ export function Chat({ chatId }: ChatProps) {
               </Button>
             ))}
           </div>
+          {/* Instructions */}
+          <div className="w-full max-w-2xl mt-4">
+            <div className="rounded-lg border bg-muted/40 p-4 text-sm">
+              <p className="mb-2">
+                To use this app, ensure your Ollama server is running.
+              </p>
+              <p className="mb-2">On Windows, run:</p>
+              <pre className="overflow-x-auto rounded-md bg-background p-3 border text-xs">
+                <code>
+                  {`set OLLAMA_ORIGINS=https://llamalocal.vercel.app\nollama serve`}
+                </code>
+              </pre>
+            </div>
+          </div>
         </div>
 
         {/* Message Input */}
